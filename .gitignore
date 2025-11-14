@@ -1,0 +1,25 @@
+# Bytecode Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Folder environment Python
+venv/
+.env/
+env/
+
+# Cache di subfolder (modules/__pycache__, utils/__pycache__)
+modules/__pycache__/
+utils/__pycache__/
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Sistem OS
+.DS_Store
+Thumbs.db
+desktop.ini
