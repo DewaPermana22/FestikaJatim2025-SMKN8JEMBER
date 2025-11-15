@@ -1,6 +1,6 @@
 import msvcrt
 import os
-from colors import Colors, colorize, print_box
+from utils.utils import Colors, colorize
 
 MENU_OPTIONS = [
     "Backup Folder",
@@ -17,34 +17,28 @@ def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
 
-def print_banner():
-    """Menampilkan banner aplikasi"""
-    banner = """
-    ╔═══════════════════════════════════════╗
-    ║         📁 AutoFile Manager 📁       ║
-    ║    Kelola File dengan Mudah & Cepat   ║
-    ╚═══════════════════════════════════════╝
-    """
-    print(colorize(banner, Colors.BOLD_CYAN))
-
-
 def print_menu(selected_index):
     clear()
-    print_banner()
 
-    print(colorize("Gunakan ↑↓ untuk navigasi, ENTER untuk pilih\n", Colors.YELLOW))
+    # Header
+    print(f"\n{Colors.BOLD_CYAN}  AutoFile Manager{Colors.RESET}")
+    print(f"{Colors.CYAN}  Alat untuk mempermudah manajemen file{Colors.RESET}\n")
 
+    # Instruksi
+    print(colorize("Gunakan ↑↓ untuk navigasi, ENTER untuk pilih tools\n", Colors.YELLOW))
+
+    # Menu options
     for index, option in enumerate(MENU_OPTIONS):
         icon = MENU_ICONS[index]
-        if index == selected_index:
-            # Highlight untuk pilihan yang dipilih
-            print(
-                f"{Colors.BG_CYAN}{Colors.BOLD_WHITE} ▶ {icon} {option} {Colors.RESET}"
-            )
-        else:
-            print(f"{Colors.CYAN}   {icon} {option}{Colors.RESET}")
 
-    print(f"\n{Colors.BOLD_YELLOW}{'─' * 43}{Colors.RESET}")
+        if index == selected_index:
+            # Selected item - Vite style dengan '>'
+            print(f"{Colors.GREEN}  > {icon}  {option}{Colors.RESET}")
+        else:
+            # Unselected item
+            print(f"{Colors.RESET}    {icon}  {option}{Colors.RESET}")
+
+    print()  # Extra line at bottom
 
 
 def choose_menu():

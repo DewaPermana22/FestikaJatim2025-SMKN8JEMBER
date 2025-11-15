@@ -2,23 +2,53 @@ import os
 from datetime import datetime
 from colors import Colors
 
+
 def ensure_folder(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
+
 def log(msg):
     timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
     print(timestamp, msg)
+
 
 def get_input(prompt, color=Colors.BOLD_YELLOW):
     """Helper untuk input dengan warna"""
     return input(f"{color}{prompt}{Colors.RESET}")
 
 
-def get_yes_no(prompt):
-    """Helper untuk input yes/no"""
-    response = get_input(f"{prompt} (y/n): ", Colors.BOLD_YELLOW).lower()
-    return response == "y"
+def get_yes_no(prompt, default=None):
+    """
+    Meminta input Yes/No dari user
+
+    Args:
+        prompt: Pertanyaan yang ditampilkan
+        default: Default value (True/False/None)
+
+    Returns:
+        Boolean (True untuk Yes, False untuk No)
+    """
+    if default is True:
+        prompt_text = f"{prompt} (Y/n): "
+    elif default is False:
+        prompt_text = f"{prompt} (y/N): "
+    else:
+        prompt_text = f"{prompt} (y/n): "
+
+    while True:
+        response = input(prompt_text).lower().strip()
+
+        # Jika user langsung ENTER dan ada default
+        if response == "" and default is not None:
+            return default
+
+        if response in ["y", "yes"]:
+            return True
+        elif response in ["n", "no"]:
+            return False
+        else:
+            print_warning("⚠️  Input tidak valid. Gunakan 'y' atau 'n'")
 
 
 def colorize(text, color):

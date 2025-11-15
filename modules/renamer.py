@@ -110,7 +110,7 @@ def run_rename_with_pattern(folder, prefix=None, suffix=None, replace=None, star
         # Tunjukkan step by step
         steps = [f"Nama awal: '{name}'"]
 
-        # 1. HAPUS TIMESTAMP (jika diaktifkan)
+        # 1. HAPUS TIMESTAMP
         if remove_ts:
             name_after_ts, ts_removed = remove_timestamp(filename)
             new_name = os.path.splitext(name_after_ts)[0]
@@ -119,24 +119,17 @@ def run_rename_with_pattern(folder, prefix=None, suffix=None, replace=None, star
             else:
                 steps.append(f"Tidak ada timestamp yang dihapus: '{new_name}'")
 
-        # 2. REPLACE TEXT (HAPUS TEKS)
+        # 2. Hapus text
         if replace:
             new_name = new_name.replace(replace, "")
-            steps.append(f"Setelah hapus '{replace}': '{new_name}'")
-
-        # 3. TAMBAH PREFIX
+        # 3. tambah prefix
         if prefix:
             new_name = f"{prefix}{new_name}"
-            steps.append(f"Setelah tambah prefix: '{new_name}'")
-
-        # 4. TAMBAH SUFFIX
+        # 4. tambah suffix
         if suffix:
             new_name = f"{new_name}{suffix}"
-            steps.append(f"Setelah tambah suffix: '{new_name}'")
-
-        # 5. AUTO NUMBERING
+        # 5. auto numbering
         new_name = f"{new_name}_{counter}"
-        steps.append(f"Setelah tambah nomor: '{new_name}'")
         new_filename = new_name + ext
 
         print(f"\n{Colors.CYAN}  File: {filename}{Colors.RESET}")
@@ -169,30 +162,24 @@ def run_rename_with_pattern(folder, prefix=None, suffix=None, replace=None, star
             name, ext = os.path.splitext(filename)
             new_name = name
 
-            # 1. HAPUS TIMESTAMP (jika diaktifkan)
+            # 1. hapus TIMESTAMP
             if remove_ts:
                 name_after_ts, _ = remove_timestamp(filename)
                 new_name = os.path.splitext(name_after_ts)[0]
-
-            # 2. REPLACE TEXT (HAPUS TEKS)
+            # 2. HAPUS TEKS
             if replace:
                 new_name = new_name.replace(replace, "")
-
             # 3. TAMBAH PREFIX
             if prefix:
                 new_name = f"{prefix}{new_name}"
-
             # 4. TAMBAH SUFFIX
             if suffix:
                 new_name = f"{new_name}{suffix}"
-
             # 5. AUTO NUMBERING
             new_name = f"{new_name}_{counter}"
-
             # 6. GABUNGKAN EKSTENSI
             new_filename = new_name + ext
             new_path = os.path.join(folder, new_filename)
-
             # Rename file
             os.rename(old_path, new_path)
 
