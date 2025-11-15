@@ -12,6 +12,10 @@ def print_ascii(path="./utils/banner.txt"):
         print(colorize(art, Colors.BOLD_CYAN))
         
 def show_welcome():
+    """
+    Menampilkan welcome message dan informasi penting
+    """
+
     print_ascii()
     print("\n")
     print(
@@ -394,18 +398,7 @@ def main():
             elif pilihan == 3:
                 interactive_rename()
             elif pilihan == 4:
-                print(
-                    f"\n{Colors.BOLD_GREEN}╔══════════════════════════════════════════╗{Colors.RESET}"
-                )
-                print(
-                    f"{Colors.BOLD_GREEN}║   👋 Terima kasih telah menggunakan     ║{Colors.RESET}"
-                )
-                print(
-                    f"{Colors.BOLD_GREEN}║       AutoFile Manager v1.0! 🗂️         ║{Colors.RESET}"
-                )
-                print(
-                    f"{Colors.BOLD_GREEN}╚══════════════════════════════════════════╝{Colors.RESET}\n"
-                )
+                print_header("Terimaksih telah menggunakan AutoFile Manager!")
                 print(
                     f"{Colors.CYAN}💡 Tips: Jalankan 'python test_autofile.py' untuk testing{Colors.RESET}"
                 )

@@ -2,16 +2,13 @@ import os
 from datetime import datetime
 from colors import Colors
 
-
 def ensure_folder(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
-
 def log(msg):
     timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
     print(timestamp, msg)
-
 
 def get_input(prompt, color=Colors.BOLD_YELLOW):
     """Helper untuk input dengan warna"""
